@@ -1,4 +1,4 @@
-# Team Name
+# Electric Spaghetti
 
 Project description (~1 paragraph)
 

@@ -1,6 +1,6 @@
-Team name:
+Team name: Electric Spaghetti
 
-Team members:
+Team members: Cameron Schneider, Nick Carter
 
 # Introduction
 
