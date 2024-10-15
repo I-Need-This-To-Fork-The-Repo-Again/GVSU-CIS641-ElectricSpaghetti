@@ -22,6 +22,7 @@ WIP
 
 ## Document Links
 [Proposal](docs/proposal-template.md)
+
 [Requirements](docs/software_requirements_specification.md)
 
 ## Meeting Logs
