@@ -14,7 +14,10 @@ The game is web-based and a demo for now, but there are plans to bring the game 
 
 ## Prerequisites
 
-WIP
+* Node version 23.0.0
+* Run 'npm i' in .\GVSU-CIS641-ElectricSpaghetti\src\around-the-horn
+* Install Vite: 'npm i -g vite'
+* Run game using 'vite'
 
 ## Run Instructions
 
