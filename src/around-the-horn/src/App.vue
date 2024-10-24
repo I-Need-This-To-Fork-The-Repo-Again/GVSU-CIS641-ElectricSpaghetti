@@ -1,11 +1,11 @@
 <template>
   <v-app>
     <v-main>
-      <v-navigation-drawer></v-navigation-drawer>
+      <RouterView />
     </v-main>
   </v-app>
 </template>
 
 <script setup>
-  //
+  import TitleScreen from "./pages/TitleScreen.vue"
 </script>

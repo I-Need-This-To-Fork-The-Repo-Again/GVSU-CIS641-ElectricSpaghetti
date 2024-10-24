@@ -1,5 +1,5 @@
 <template>
-  <HelloWorld />
+  <TitleScreen />
 </template>
 
 <script setup>
