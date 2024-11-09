@@ -50,14 +50,14 @@ export default {
             console.log("FO")
             if (gameObject.baseStatus.third && gameObject.outs < 2) { //if runner on third and inning isnt about to end (tag up)
                 gameObject.baseStatus.third = false
-                teamObject.runs = teamObject.runs + 1
+                this.addRun(gameObject, teamObject, 1)
             }
             this.addOut(gameObject)
         },
 
         groundout: function (gameObject, teamObject) {
             console.log("GO")
-            if (gameObject.baseStatus.first && gameObject.baseStatus.second && gameObject.baseStatis.third) {
+            if (gameObject.baseStatus.first && gameObject.baseStatus.second && gameObject.baseStatus.third) {
                 //bases loaded = dp and runner on second and third
                 if (gameObject.outs < 1) {
                     gameObject.baseStatus.first = false
@@ -79,10 +79,10 @@ export default {
                 }
                 this.addOut(gameObject)
             }
-            else if (gameObject.baseStatus.first && gameObject.baseStatis.third) {
+            else if (gameObject.baseStatus.first && gameObject.baseStatus.third) {
                 //runner on first and third = dp + runner scores, bases empty
                 if (gameObject.outs < 1) {
-                    teamObject.runs = teamObject.runs + 1
+                    this.addRun(gameObject, teamObject, 1)
                     gameObject.baseStatus.first = false
                     gameObject.baseStatus.third = false
                 }
@@ -91,11 +91,11 @@ export default {
                 }
                 this.addOut(gameObject)
             }
-            else if (gameObject.baseStatus.second && gameObject.baseStatis.third) {
+            else if (gameObject.baseStatus.second && gameObject.baseStatus.third) {
                 //runner on second and third = out + runner scores, runner on third
                 if (gameObject.outs < 2) {
                     gameObject.baseStatus.second = false
-                    teamObject.runs = teamObject.runs + 1
+                    this.addRun(gameObject, teamObject, 1)
                 }
                 this.addOut(gameObject)
             }
@@ -118,7 +118,7 @@ export default {
                 //runner on third = out + runner scores, bases empty
                 if (gameObject.outs > 2) {
                     gameObject.baseStatus.third = false
-                    teamObject.runs = teamObject.runs + 1
+                    this.addRun(gameObject, teamObject, 1)
                 }
                 this.addOut(gameObject)
             }
@@ -131,12 +131,12 @@ export default {
         single: function (gameObject, teamObject) {
             if(gameObject.baseStatus.third) {
                 //score run, remove third
-                teamObject.runs = teamObject.runs + 1
+                this.addRun(gameObject, teamObject, 1)
                 gameObject.baseStatus.third = false
             }
             if(gameObject.baseStatus.second) {
                 //score run, remove second
-                teamObject.runs = teamObject.runs + 1
+                this.addRun(gameObject, teamObject, 1)
                 gameObject.baseStatus.second = false
             }
             if(gameObject.baseStatus.first) {
@@ -151,17 +151,17 @@ export default {
         double: function (gameObject, teamObject) {
             if(gameObject.baseStatus.third) {
                 //score run, remove third
-                teamObject.runs = teamObject.runs + 1
+                this.addRun(gameObject, teamObject, 1)
                 gameObject.baseStatus.third = false
             }
             if(gameObject.baseStatus.second) {
                 //score run, remove second
-                teamObject.runs = teamObject.runs + 1
+                this.addRun(gameObject, teamObject, 1)
                 gameObject.baseStatus.second = false
             }
             if(gameObject.baseStatus.first) {
                 //score run, remove first
-                teamObject.runs = teamObject.runs + 1
+                this.addRun(gameObject, teamObject, 1)
                 gameObject.baseStatus.first = false
             }
             //runner to second, add hit
@@ -172,17 +172,17 @@ export default {
         triple: function (gameObject, teamObject) {
             if(gameObject.baseStatus.third) {
                 //score run, remove third
-                teamObject.runs = teamObject.runs + 1
+                this.addRun(gameObject, teamObject, 1)
                 gameObject.baseStatus.third = false
             }
             if(gameObject.baseStatus.second) {
                 //score run, remove second
-                teamObject.runs = teamObject.runs + 1
+                this.addRun(gameObject, teamObject, 1)
                 gameObject.baseStatus.second = false
             }
             if(gameObject.baseStatus.first) {
                 //score run, remove first
-                teamObject.runs = teamObject.runs + 1
+                this.addRun(gameObject, teamObject, 1)
                 gameObject.baseStatus.first = false
             }
             //runner to third, add hit
@@ -192,7 +192,7 @@ export default {
 
         homeRun: function (gameObject, teamObject) {
             //score run for each runner + batter
-            teamObject.runs = teamObject.runs + 1 + [gameObject.baseStatus.first, gameObject.baseStatus.second, gameObject.baseStatus.third].filter(Boolean).length
+            this.addRun(gameObject, teamObject, 1 + [gameObject.baseStatus.first, gameObject.baseStatus.second, gameObject.baseStatus.third].filter(Boolean).length)
             gameObject.baseStatus.first = false
             gameObject.baseStatus.second = false
             gameObject.baseStatus.third = false
@@ -200,9 +200,9 @@ export default {
         },
 
         walk: function (gameObject, teamObject) {
-            if (gameObject.baseStatus.first && gameObject.baseStatus.second && gameObject.baseStatis.third) {
+            if (gameObject.baseStatus.first && gameObject.baseStatus.second && gameObject.baseStatus.third) {
                 //bases loaded = score run
-                teamObject.runs = teamObject.runs + 1
+                this.addRun(gameObject, teamObject,)
             }
             else if ([gameObject.baseStatus.first, gameObject.baseStatus.second, gameObject.baseStatus.third].filter(Boolean).length === 2 ) {
                 //any two runners on base = bases loaded
@@ -238,20 +238,43 @@ export default {
                     gameObject.baseStatus.first = false
                     gameObject.baseStatus.second = false
                     gameObject.baseStatus.third = false
-                    if (gameObject.inning > 3) { //if ending game
-                        //TODO: end game
-                    }
                 }
                 else { //if ending top of inning
                     gameObject.top = false
                     gameObject.baseStatus.first = false
                     gameObject.baseStatus.second = false
                     gameObject.baseStatus.third = false
-                    //TODO: check if home team is winning if in inning 3
                 }
             }
         },
 
+        addRun: function (gameObject, teamObject, num) {
+            teamObject.runs += num
+            teamObject.inningScore[gameObject.inning - 1] += num
+        },
+
+        checkWin: function (gameObject, teamObject, opponentObject) {
+            if(gameObject.inning === 3) { //if in third inning
+                if(gameObject.top === false && teamObject.home === true && teamObject.runs > opponentObject.runs) { //if player team is home and winning in bottom three
+                    //player win
+                    console.log("player win")
+                }
+                else if(gameObject.top === false && teamObject.home === false && teamObject.runs < opponentObject.runs) { //if player is away and losing in bottom three
+                    //opp win
+                    console.log("opp win")
+                }
+            }
+            else if(gameObject.inning === 4) { //third inning ends
+                if(teamObject.runs > opponentObject.runs) { //player winning after three
+                    //player win
+                    console.log("player win")
+                }
+                else if(teamObject.runs < opponentObject.runs) { //opp winning after three
+                    //opp win
+                    console.log("opp win")
+                }
+            }
+        }
     },
 
     computed: {},
