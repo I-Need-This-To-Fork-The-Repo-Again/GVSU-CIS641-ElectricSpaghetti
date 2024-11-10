@@ -16,21 +16,7 @@
         <PlayerList :teamList="playerTeam" />
       </v-col>
       <v-col cols="6">
-        <v-row>
-          <v-col>
-            <div v-if="gameObject.baseStatus.third"> ■ </div>
-            <div v-else> □ </div>
-          </v-col>
-          <v-col>
-            <div v-if="gameObject.baseStatus.second"> ■ </div>
-            <div v-else> □ </div>
-          </v-col>
-          <v-col>
-            <div v-if="gameObject.baseStatus.first"> ■ </div>
-            <div v-else> □ </div>
-          </v-col>
-        </v-row>
-        <div>Outs: {{ gameObject.outs }}</div>
+        <FieldShow :game-object="gameObject" />
       </v-col>
       <v-col :order="opponentObject.home ? 'last' : 'first'">
         <PlayerList :teamList="opponentTeam" />
@@ -52,19 +38,22 @@
 </template>
 
 <script>
-import { playerTestTeam, opponentTestTeam } from './TestData';
-import GameplayMixin from './GameplayMixin';
+import { playerTestTeam, opponentTestTeam } from '../pages/TestData';
+import GameplayMixin from '../pages/GameplayMixin';
 import PlayerList from '@/components/PlayerList.vue';
 import ScoreBoard from '@/components/ScoreBoard.vue';
+import FieldShow from './FieldShow.vue';
 
 export default {
   name: 'GameScreen',
 
+  props: [ 'playerTeam', 'opponentTeam'],
+
   data() {
     return {
-      playerTeam: playerTestTeam, //will eventually be brought in or generated, depending on game status
+      playerTeam: this.playerTeam, //will eventually be brought in or generated, depending on game status
       playerObject: null, //populated
-      opponentTeam: opponentTestTeam, //randomly generated
+      opponentTeam: this.opponentTeam, //randomly generated
       opponentObject: null, //populated
       gameObject: null, //populated
       selectedOutcome: null, // This will store the selected option's value
@@ -87,6 +76,8 @@ export default {
     console.log(this.gameObject)
     console.log(this.playerObject)
   },
+
+  components: {ScoreBoard, PlayerList, FieldShow},
 
   mixins: [GameplayMixin],
 

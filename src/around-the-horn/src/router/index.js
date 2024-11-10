@@ -6,13 +6,13 @@
  */
 
 // Composables
-import GameScreen from '@/pages/GameScreen.vue'
+import GameController from '@/pages/GameController.vue'
 import TitleScreen from '@/pages/TitleScreen.vue'
 import { createRouter, createWebHistory } from 'vue-router/auto'
 
 const routes = [
   { path: "/", component: TitleScreen},
-  { path: "/game", component: GameScreen}
+  { path: "/game", component: GameController}
 ]
 
 const router = createRouter({

@@ -202,7 +202,7 @@ export default {
         walk: function (gameObject, teamObject) {
             if (gameObject.baseStatus.first && gameObject.baseStatus.second && gameObject.baseStatus.third) {
                 //bases loaded = score run
-                this.addRun(gameObject, teamObject,)
+                this.addRun(gameObject, teamObject, 1)
             }
             else if ([gameObject.baseStatus.first, gameObject.baseStatus.second, gameObject.baseStatus.third].filter(Boolean).length === 2 ) {
                 //any two runners on base = bases loaded

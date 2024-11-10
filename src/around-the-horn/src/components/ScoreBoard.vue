@@ -29,7 +29,7 @@
 
 <script>
 export default {
-    name: 'PlayerList',
+    name: 'ScoreBoard',
 
     props: ['gameObject', 'homeObject', 'awayObject'],
 
