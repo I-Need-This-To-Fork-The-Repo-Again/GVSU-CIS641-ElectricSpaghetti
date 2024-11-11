@@ -101,7 +101,7 @@ startGame() {
     },
   };
   this.generateItems();
-  console.log("Batter Up!");
+  console.log("Batter Up!"); //for testing
 },
 
 continueGame() {
@@ -115,7 +115,7 @@ continueGame() {
 },
 
 endGame(winner) {
-  console.log("That's The Ball Game!", winner, "Tournament Won!");
+  console.log("That's The Ball Game!", winner, "Tournament Won!"); //for testing
   if (winner == "player") {
     this.tournamentsWon += 1;
     this.presentItems();
@@ -127,7 +127,7 @@ endGame(winner) {
   },
 
 winRun() {
-  console.log("Victory!")
+  console.log("Victory!") //for testing
 },
 
 generateItems() { //will add more later, serves as a placeholder for all items in the game
@@ -154,7 +154,7 @@ checkItemEffect(batter, hitType) { //not sure the logic to eject a player, will 
     switch(item.name) {
       case "Corked Bat":
         if(Math.random() < item.ejectionChance) {
-          console.log("YOU'RE OUTTA HERE!")
+          console.log("YOU'RE OUTTA HERE!") //for testing
           //add the logic here
           this.strikeout(this.gameObject)
           return true; //causes a strikeout if a player is ejected
@@ -168,14 +168,14 @@ checkItemEffect(batter, hitType) { //not sure the logic to eject a player, will 
 presentItems() { //after a tournament is won, the player will be presented items and mementos
   if (this.tournamentsWon % 3 == 0 && this.tournamentsWon != 0) {
     this.generateItems()
-    console.log("Take your pick", this.availableItems);
+    console.log("Take your pick", this.availableItems); //for testing
     this.presentMementos()
   },
 
   presentMementos() { //
     if (this.tournamentsWon % 3 == 0 && this.tournamentsWon != 0) {
     this.generateMementos()
-    console.log("Fun for the whole team", this.availableMementos)
+    console.log("Fun for the whole team", this.availableMementos) //for testing
     }
   },
 
