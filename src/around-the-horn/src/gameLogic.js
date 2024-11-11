@@ -85,8 +85,126 @@ determineHitOutcome(batter) { //zero idea if this is gonna be balanced or not bu
   }
 },
 
+startGame() {
+  this.playerTeam = this.generateTeam();
+  this.opponentTeam = this.generateTeam();
+  this.playerTeam.home = Math.random() < 0.5 ? true: false;
+  this.opponentTeam.home = !this.playerTeam.home
+  this.gameObject = {
+    inning: 1,
+    top: true,
+    outs: 0,
+    baseStatus: {
+      first: false,
+      second: false,
+      third: false,
+    },
+  };
+  this.generateItems();
+  console.log("Batter Up!");
+},
 
+continueGame() {
+  let currentTeam = this.gameObject.top ? this.opponentTeam : this.playerTeam;
+  let batter = currentTeam.players[currentTeam.hitter];
 
+  const hitType = this.determineHitOutcome(batter);
+  this.chooseHitType(hitType, this.gameObject, currentTeam);
+  this.nextBatter(currentTeam);
+  this.checkWin(this.gameObject, this.playerTeam, this.opponentTeam);
+},
+
+endGame(winner) {
+  console.log("That's The Ball Game!", winner, "Tournament Won!");
+  if (winner == "player") {
+    this.tournamentsWon += 1;
+    this.presentItems();
+    this.presentMementos();
+  }
+  if (this.tournamentsWon === 3) {
+    this.winRun();
+  }
+  },
+
+winRun() {
+  console.log("Victory!")
+},
+
+generateItems() { //will add more later, serves as a placeholder for all items in the game
+  this.availableItems = [
+    {name: "Corked Bat", strengthmod: 25, ejectionChance: 0.02},
+    //add more items later
+    ];
+},
+
+equipItem(item, player) { //equip selected item to current player
+  player.equippedItem = item;
+  this.equippedItems.push(item)
+  this.availableItems = this.availableItems.filter(x => x.name !== item.name)
+},
+
+unequipItem(player) { //this will be changed, not exactly sure how to remove the item once it's been used so doing an unequip for now
+  this.availableItems.push(player.equippedItem)
+  player.equippedItem = null;
+},
+
+checkItemEffect(batter, hitType) { //not sure the logic to eject a player, will add later
+  const item = batter.equippedIem
+  if (item) {
+    switch(item.name) {
+      case "Corked Bat":
+        if(Math.random() < item.ejectionChance) {
+          console.log("YOU'RE OUTTA HERE!")
+          //add the logic here
+          this.strikeout(this.gameObject)
+          return true; //causes a strikeout if a player is ejected
+        }
+        break;
+    }
+  }
+  return false
+},
+
+presentItems() { //after a tournament is won, the player will be presented items and mementos
+  if (this.tournamentsWon % 3 == 0 && this.tournamentsWon != 0) {
+    this.generateItems()
+    console.log("Take your pick", this.availableItems);
+    this.presentMementos()
+  },
+
+  presentMementos() { //
+    if (this.tournamentsWon % 3 == 0 && this.tournamentsWon != 0) {
+    this.generateMementos()
+    console.log("Fun for the whole team", this.availableMementos)
+    }
+  },
+
+  generateMementos() { //add more mementos
+    this.availableMementos = [
+      {name: "Rally Cap", effect: "Each player has a 1% higher chance to hit a home run. If a player gets a hit, this chance doubles. If a player strikes out or hits a home run, this chance resets."}
+      //add more mementos here
+      ]
+  },
+
+  chooseMemento(memento) { //add more mementos
+    this.choseMementos.push(memento)
+    this.availableMementos = this.availableMementos.filter(x => x.name !== memento.name)
+    switch(memento.name) {
+      case "Rally Cap":
+        this.applyRallyCap()
+        break;
+        //add more mementos here
+    }
+  },
+
+  applyRallyCap() { //do this for all additional mementos
+    //I'll add the logic later
+  },
+  //apply all mementos
+},
+};
+
+export default gameLogic;
 
 
 
