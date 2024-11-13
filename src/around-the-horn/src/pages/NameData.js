@@ -29,3 +29,7 @@ export const lastNames = [
     "Molina", "Kelly", "McCullers", "Voth", "Melendez", "Garcia", "Hernandez", "Martinez", 
     "Diaz", "Fried", "McNeil"
 ];
+
+export const items = [
+    "corked_bat", "adrenaline_shot", "ice_skates"
+];

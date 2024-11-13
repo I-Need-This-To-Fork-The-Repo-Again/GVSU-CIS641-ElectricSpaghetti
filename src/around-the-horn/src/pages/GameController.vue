@@ -18,7 +18,7 @@ export default {
 
     name: "GameController",
 
-    component: { GameScreen },
+    components: { GameScreen },
 
     data() {
         return {

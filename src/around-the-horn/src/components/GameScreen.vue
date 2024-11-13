@@ -27,6 +27,7 @@
         <ScoreBoard :gameObject="gameObject" :homeObject="getHomeTeam" :awayObject="getAwayTeam" />
       </v-col>
       <v-col cols="6">
+        <div>Outs: {{ gameObject.outs }}</div>
         <v-select v-model="selectedOutcome" :items="outcomes" label="Select Outcome" outlined></v-select>
         <v-btn @click="hit(selectedOutcome, hittingObject, gameObject)">Hit</v-btn>
       </v-col>
@@ -100,7 +101,7 @@ export default {
 
       this.playerObject = {
         initials: "PLA",
-        home: true,
+        home: false,
         hitter: 0,
         runs: 0,
         hits: 0,
@@ -109,7 +110,7 @@ export default {
 
       this.opponentObject = {
         initials: "OPP",
-        home: false,
+        home: true,
         hitter: 0,
         runs: 0,
         hits: 0,
