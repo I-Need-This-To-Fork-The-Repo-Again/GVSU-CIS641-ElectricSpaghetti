@@ -1,14 +1,14 @@
 <template>
-  <v-container v-if="playerObject && opponentObject && playerTeam && opponentTeam">
+  <v-container v-if="playerObject && opponentObject && playerTeam && opponentTeam && gameObject">
     <v-row rows="6">
       <v-col :order="playerObject.home ? 'last' : 'first'">
-        <div class="text-center text-h4">Player Team - {{ playerObject.initials }}</div>
+        <div class="text-center text-h4">{{playerObject.name}} - {{ playerObject.initials }}</div>
       </v-col>
       <v-col cols="6">
         <div class="text-center text-h3">AAA - Semifinals</div>
       </v-col>
       <v-col :order="opponentObject.home ? 'last' : 'first'">
-        <div class="text-center text-h4">Opponent Team - {{ opponentObject.initials }}</div>
+        <div class="text-center text-h4">{{opponentObject.name}} - {{ opponentObject.initials }}</div>
       </v-col>
     </v-row>
     <v-row>
@@ -53,28 +53,16 @@ import PlayerStats from './PlayerStats.vue';
 export default {
   name: 'GameScreen',
 
-  props: ['playerTeam', 'opponentTeam'],
+  props: ['playerTeam', 'opponentTeam', 'playerTeamObject', 'opponentTeamObject'],
 
   data() {
     return {
       playerTeam: this.playerTeam, //will eventually be brought in or generated, depending on game status
-      playerObject: null, //populated
+      playerObject: this.playerTeamObject, //populated
       opponentTeam: this.opponentTeam, //randomly generated
-      opponentObject: null, //populated
+      opponentObject: this.opponentTeamObject, //populated
       gameObject: null, //populated
-      selectedOutcome: null, // This will store the selected option's value
-      outcomes: [
-        { title: 'Strike Out', value: 'K' },
-        { title: 'Line Out', value: 'LO' },
-        { title: 'Ground Out', value: 'GO' },
-        { title: 'Fly Out', value: 'FO' },
-        { title: 'Single', value: '1B' },
-        { title: 'Double', value: '2B' },
-        { title: 'Triple', value: '3B' },
-        { title: 'Home Run', value: 'HR' },
-        { title: 'Walk', value: 'BB' }
-      ],
-      gameLog: []
+      gameLog: [],
     }
   },
 
@@ -82,6 +70,7 @@ export default {
     this.initializeGame()
     console.log(this.gameObject)
     console.log(this.playerObject)
+    console.log(this.opponentObject)
   },
 
   components: { ScoreBoard, PlayerList, FieldShow },
@@ -105,22 +94,15 @@ export default {
         },
       };
 
-      this.playerObject = {
-        initials: "PLA",
-        home: false,
-        hitter: 0,
-        runs: 0,
-        hits: 0,
-        inningScore: [0, 0, 0]
-      };
-
-      this.opponentObject = {
-        initials: "OPP",
-        home: true,
-        hitter: 0,
-        runs: 0,
-        hits: 0,
-        inningScore: [0, 0, 0]
+      let home = Math.floor(Math.random() * 2) + 1
+      console.log(home)
+      if(home === 1) {
+        this.playerObject.home = true
+        this.opponentObject.home = false
+      } 
+      else {
+        this.playerObject.home = false
+        this.opponentObject.home = true
       }
     },
 

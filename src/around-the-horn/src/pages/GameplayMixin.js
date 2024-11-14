@@ -307,7 +307,7 @@ export default {
                 return " 1 run scores."
             }
             else {
-                return " " + num + "runs score."
+                return " " + num + " runs score."
             }
         },
 

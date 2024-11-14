@@ -30,6 +30,75 @@ export const lastNames = [
     "Diaz", "Fried", "McNeil"
 ];
 
+export const baseballCities = [
+    // MLB Cities
+    "Atlanta", "Miami", "New York", "Philadelphia", "Washington",
+    "Chicago", "Cincinnati", "Milwaukee", "Pittsburgh", "St. Louis",
+    "Arizona", "Colorado", "Los Angeles", "San Diego", "San Francisco",
+    "Baltimore", "Boston", "New York", "Tampa Bay", "Toronto",
+    "Chicago", "Cleveland", "Detroit", "Kansas City", "Minnesota",
+    "Houston", "Los Angeles", "Oakland", "Seattle", "Texas",
+  
+    // MiLB AAA Cities (International League)
+    "Allentown", "Buffalo", "Charlotte", "Columbus", "Durham",
+    "Indianapolis", "Jacksonville", "Lawrenceville", "Louisville", 
+    "Memphis", "Nashville", "Norfolk", "Omaha", "Rochester", 
+    "Scranton/Wilkes-Barre", "St. Paul", "Syracuse", "Toledo", "Worcester",
+  
+    // MiLB AAA Cities (Pacific Coast League)
+    "Albuquerque", "El Paso", "Las Vegas", "Oklahoma City", 
+    "Reno", "Round Rock", "Sacramento", "Salt Lake", "Sugar Land", 
+    "Tacoma",
+  
+    // MiLB AA Cities (Eastern League)
+    "Akron", "Altoona", "Binghamton", "Bowie", "Bridgewater",
+    "Erie", "Hartford", "Portland", "Reading", "Richmond",
+    
+    // MiLB AA Cities (Southern League)
+    "Birmingham", "Chattanooga", "Kodak", "Madison", "Montgomery", 
+    "Pearl", "Pensacola", "Biloxi",
+    
+    // MiLB AA Cities (Texas League)
+    "Amarillo", "Corpus Christi", "Frisco", "Little Rock", 
+    "Midland", "North Little Rock", "Springfield", "Tulsa", 
+    "Wichita"
+  ];
+  
+  export const baseballTeamNames = [
+    // MLB Team Names
+    "Braves", "Marlins", "Mets", "Phillies", "Nationals",
+    "Cubs", "Reds", "Brewers", "Pirates", "Cardinals",
+    "Diamondbacks", "Rockies", "Dodgers", "Padres", "Giants",
+    "Orioles", "Red Sox", "Yankees", "Rays", "Blue Jays",
+    "White Sox", "Guardians", "Tigers", "Royals", "Twins",
+    "Astros", "Angels", "Athletics", "Mariners", "Rangers",
+  
+    // MiLB AAA Team Names (International League)
+    "IronPigs", "Bisons", "Knights", "Clippers", "Bulls",
+    "Indians", "Jumbo Shrimp", "Stripers", "Bats", 
+    "Redbirds", "Sounds", "Tides", "Storm Chasers", "Red Wings", 
+    "RailRiders", "Saints", "Mets", "Mud Hens", "WooSox",
+  
+    // MiLB AAA Team Names (Pacific Coast League)
+    "Isotopes", "Chihuahuas", "Aviators", "Dodgers", 
+    "Aces", "Express", "River Cats", "Bees", "Space Cowboys", 
+    "Rainiers",
+  
+    // MiLB AA Team Names (Eastern League)
+    "RubberDucks", "Curve", "Rumble Ponies", "Baysox", "Patriots",
+    "SeaWolves", "Yard Goats", "Sea Dogs", "Fightin Phils", "Flying Squirrels",
+    
+    // MiLB AA Team Names (Southern League)
+    "Barons", "Lookouts", "Smokies", "Trash Pandas", "Biscuits", 
+    "Braves", "Blue Wahoos", "Shuckers",
+    
+    // MiLB AA Team Names (Texas League)
+    "Sod Poodles", "Hooks", "RoughRiders", "Travelers", 
+    "RockHounds", "Travelers", "Cardinals", "Drillers", 
+    "Wind Surge"
+  ];
+
+  
 export const items = [
     "corked_bat", "adrenaline_shot", "ice_skates"
 ];

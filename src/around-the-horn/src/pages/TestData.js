@@ -4,7 +4,7 @@ export const playerTestTeam = [
         position: "DH",
         number: 1,
         stats: {
-            str: 10,
+            str: 99,
             con: 10,
             spd: 10,
             vis: 10,
