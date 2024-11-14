@@ -1,5 +1,5 @@
 <template>
-  <v-container v-if="playerObject && opponentObject">
+  <v-container v-if="playerObject && opponentObject && playerTeam && opponentTeam">
     <v-row rows="6">
       <v-col :order="playerObject.home ? 'last' : 'first'">
         <div class="text-center text-h4">Player Team - {{ playerObject.initials }}</div>
@@ -27,12 +27,15 @@
         <ScoreBoard :gameObject="gameObject" :homeObject="getHomeTeam" :awayObject="getAwayTeam" />
       </v-col>
       <v-col cols="6">
-        <div>Outs: {{ gameObject.outs }}</div>
-        <v-select v-model="selectedOutcome" :items="outcomes" label="Select Outcome" outlined></v-select>
-        <v-btn @click="hit(selectedOutcome, hittingObject, gameObject)">Hit</v-btn>
+        <PlayerStats :player="hittingTeam[hittingObject.hitter]" :gameObject="gameObject" />
+        <v-btn @click="hit(hittingTeam, hittingObject, gameObject)">Hit</v-btn>
       </v-col>
       <v-col>
-
+        <v-virtual-scroll :height="200" :items="gameLog" ref="scrollBox">
+          <template v-slot:default="{ item }">
+            <div class="mx-4">{{ item }}</div>
+          </template>
+        </v-virtual-scroll>
       </v-col>
     </v-row>
   </v-container>
@@ -44,11 +47,13 @@ import GameplayMixin from '../pages/GameplayMixin';
 import PlayerList from '@/components/PlayerList.vue';
 import ScoreBoard from '@/components/ScoreBoard.vue';
 import FieldShow from './FieldShow.vue';
+import GameLogic from '../pages/GameLogic';
+import PlayerStats from './PlayerStats.vue';
 
 export default {
   name: 'GameScreen',
 
-  props: [ 'playerTeam', 'opponentTeam'],
+  props: ['playerTeam', 'opponentTeam'],
 
   data() {
     return {
@@ -68,7 +73,8 @@ export default {
         { title: 'Triple', value: '3B' },
         { title: 'Home Run', value: 'HR' },
         { title: 'Walk', value: 'BB' }
-      ]
+      ],
+      gameLog: []
     }
   },
 
@@ -78,9 +84,9 @@ export default {
     console.log(this.playerObject)
   },
 
-  components: {ScoreBoard, PlayerList, FieldShow},
+  components: { ScoreBoard, PlayerList, FieldShow },
 
-  mixins: [GameplayMixin],
+  mixins: [GameplayMixin, GameLogic],
 
   methods: {
     goToHome: function () {
@@ -118,12 +124,16 @@ export default {
       }
     },
 
-    hit: function (type, teamObject, gameObject) {
+    hit: function (team, teamObject, gameObject) {
       //generate buckets given stats (apply items)
       //get random number
       //let random number decide hit type
       //perform hit
-      this.chooseHitType(type, gameObject, teamObject)
+      let type = this.determineHitOutcome(team[teamObject.hitter])
+      console.log(team[teamObject.hitter])
+      console.log(type)
+      let outcome = this.chooseHitType(type, gameObject, teamObject)
+      this.gameLog.unshift("- " + team[teamObject.hitter].name + " " + outcome)
       this.nextBatter(teamObject)
       this.checkWin(gameObject, this.playerObject, this.opponentObject)
     }
@@ -186,6 +196,14 @@ export default {
       else
         return this.opponentObject
     },
+  },
+
+  watch: {
+    gameLog() {
+      this.$nextTick(() => {
+        this.scrollBox.scrollTo({ bottom: 0 });
+      });
+    }
   }
 }
 </script>
