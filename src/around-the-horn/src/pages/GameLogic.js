@@ -45,7 +45,7 @@ export default {
       let contactMod = batter.stats.con + (batter.equippedItem ? batter.equippedItem.contactMod || 0 : 0);
       let strengthMod = batter.stats.str + (batter.equippedItem ? batter.equippedItem.strengthMod || 0 : 0);
       let visionMod = batter.stats.vis + (batter.equippedItem ? batter.equippedItem.visionMod || 0 : 0);
-      let speedMod = batter.stats.vis + (batter.equippedItem ? batter.equippedItem.speedMod || 0 : 0);
+      let speedMod = batter.stats.spd + (batter.equippedItem ? batter.equippedItem.speedMod || 0 : 0);
       let luckMod = batter.stats.luc + (batter.equippedItem ? batter.equippedItem.luckMod || 0 : 0);
 
       if (randomNumber < (this.hitThreshold.K - (contactMod / 2.5)) + (visionMod / 15) + (luckMod / 20)) { //number < 50 = strikeout
@@ -83,7 +83,7 @@ export default {
       let contactMod = batter.stats.con + (batter.equippedItem ? batter.equippedItem.contactMod || 0 : 0);
       let strengthMod = batter.stats.str + (batter.equippedItem ? batter.equippedItem.strengthMod || 0 : 0);
       let visionMod = batter.stats.vis + (batter.equippedItem ? batter.equippedItem.visionMod || 0 : 0);
-      let speedMod = batter.stats.vis + (batter.equippedItem ? batter.equippedItem.speedMod || 0 : 0);
+      let speedMod = batter.stats.spd + (batter.equippedItem ? batter.equippedItem.speedMod || 0 : 0);
       let luckMod = batter.stats.luc + (batter.equippedItem ? batter.equippedItem.luckMod || 0 : 0);
 
       let chances = {}
@@ -111,7 +111,7 @@ export default {
       percentages["2B"] = Math.round(((outcomeChances["2B"] - outcomeChances["1B"]) / 10 + Number.EPSILON) * 100) / 100
       percentages["3B"] = Math.round(((outcomeChances["3B"] - outcomeChances["2B"]) / 10 + Number.EPSILON) * 100) / 100
       percentages["HR"] = Math.round(((outcomeChances.HR - outcomeChances["3B"]) / 10 + Number.EPSILON) * 100) / 100
-      percentages["BB"] = Math.round(((1000 - outcomeChances.HR) / 10 + Number.EPSILON) * 100) / 100
+      percentages["BB"] = Math.max(0, Math.round(((1000 - outcomeChances.HR) / 10) * 100) / 100);
 
       return percentages
     },
