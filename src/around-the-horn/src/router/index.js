@@ -12,7 +12,12 @@ import { createRouter, createWebHistory } from 'vue-router/auto'
 
 const routes = [
   { path: "/", component: TitleScreen},
-  { path: "/game", component: GameController}
+  { path: "/game",
+    component: GameController,
+    props: (route) => ({
+      teamName: route.query.teamName,
+      teamInitials: route.query.teamInitials,
+    }),}
 ]
 
 const router = createRouter({

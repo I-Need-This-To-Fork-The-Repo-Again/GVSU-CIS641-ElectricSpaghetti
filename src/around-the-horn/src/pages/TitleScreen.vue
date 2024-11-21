@@ -45,7 +45,7 @@
         if (this.formValid) {
           this.$router.push({
             path: "/game",
-            //query: { teamName: this.teamName, teamInitials: this.teamInitials },
+            query: { teamName: this.teamName, teamInitials: this.teamInitials },
           });
         }
       },

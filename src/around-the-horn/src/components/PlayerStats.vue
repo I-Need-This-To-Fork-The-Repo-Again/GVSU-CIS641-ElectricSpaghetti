@@ -32,7 +32,7 @@
                         </tr>
                         <tr>
                             <td>SPD: {{ player.stats.spd }}</td>
-                            <td>Groundout: {{ outcomePercentages.GO }}%</td>
+                            <td>Lineout: {{ outcomePercentages.LO }}%</td>
                             <td>Triple: {{ outcomePercentages["3B"] }}%</td>
                         </tr>
                         <tr>

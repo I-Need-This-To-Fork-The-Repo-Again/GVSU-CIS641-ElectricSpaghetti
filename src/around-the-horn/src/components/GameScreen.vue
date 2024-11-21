@@ -93,17 +93,6 @@ export default {
           third: false,
         },
       };
-
-      let home = Math.floor(Math.random() * 2) + 1
-      console.log(home)
-      if(home === 1) {
-        this.playerObject.home = true
-        this.opponentObject.home = false
-      } 
-      else {
-        this.playerObject.home = false
-        this.opponentObject.home = true
-      }
     },
 
     hit: function (team, teamObject, gameObject) {
