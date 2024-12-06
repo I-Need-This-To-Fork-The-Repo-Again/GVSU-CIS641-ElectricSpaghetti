@@ -16,9 +16,9 @@ This section contains the requirements, both Functional and Non-Functional. Each
 | :-------------: | :----------: |
 | FR6 | RNG buckets shall differ between players with different stats. |
 | FR7 | A stat shall be increased when the user selects a stat upgrade. |
-| FR8 | Stats shall scale for each run to incorporate rouge-like gameplay elements. |
+| FR8 | CPU stats shall scale for each run to incorporate rouge-like gameplay elements. |
 | FR9 | Stats shall be random at the start of each run. |
-| FR10 | A stat shall provide increased chances of a certain at-bat outcome. |
+| FR10 | A stat shall provide increased/decreased chances of a certain at-bat outcome. |
 ### Website Details
 | ID | Requirement |
 | :-------------: | :----------: |
@@ -49,7 +49,7 @@ This section contains the requirements, both Functional and Non-Functional. Each
 | :-------------: | :----------: |
 | NFR1 | An expected outcome shall happen when a player performs an at-bat. |
 | NFR2 | Outcomes for each at-bat shall be consistent with each type of hit/out. |
-| NFR3 | < Non-Functional Requirement 3> |
+| NFR3 | Percentages for each outcome shall be accurate. |
 | NFR4 | < Non-Functional Requirement 4> |
 | NFR5 | < Non-Functional Requirement 5> |
 ### Stats
@@ -85,7 +85,7 @@ This section contains the requirements, both Functional and Non-Functional. Each
 | NFR24 | < Non-Functional Requirement 4> |
 | NFR25 | < Non-Functional Requirement 5> |
 # Change management plan
-<Description of what this section is>
+This section contains the change management plan for our project. We will include 
 # Traceability links
 <Description of this section>
 ## Use Case Diagram Traceability
