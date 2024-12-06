@@ -1,18 +1,18 @@
 <template>
     <div v-if="playerTeam && opponentTeam">
         <TeamShow v-if="state === 'teamView'" :playerTeam="playerTeam" :opponentTeam="opponentTeam"
-            :playerTeamObject="playerTeamObject" :opponentTeamObject="opponentTeamObject" @start-game="startGame()" />
+            :playerTeamObject="playerTeamObject" :opponentTeamObject="opponentTeamObject" :gameStatus="gameStatus" @start-game="startGame()" />
         <GameScreen v-else-if="state === 'game'" :playerTeam="playerTeam" :opponentTeam="opponentTeam"
-            :playerTeamObject="playerTeamObject" :opponentTeamObject="opponentTeamObject"
+            :playerTeamObject="playerTeamObject" :opponentTeamObject="opponentTeamObject" :gameStatus="gameStatus"
             @game-over="gameOver($event)" />
         <WinScreen v-else-if="state === 'end'" :playerTeamObject="playerTeamObject"
-            :opponentTeamObject="opponentTeamObject" :winner="winner" @next="next($event)" />
+            :opponentTeamObject="opponentTeamObject" :winner="winner" :lastGameObject="lastGameObject" :gameStatus="gameStatus" @next="next($event)" />
     </div>
 </template>
 
 <script>
 import GameScreen from '../components/GameScreen.vue';
-import { baseballCities, baseballTeamNames, firstNames, lastNames } from './NameData'
+import { baseballCities, baseballTeamNames, firstNames, lastNames, playerStages } from './NameData'
 import { playerTestTeam, opponentTestTeam } from '../pages/TestData';
 import TeamShow from '@/components/TeamShow.vue';
 import WinScreen from '@/components/WinScreen.vue';
@@ -51,13 +51,15 @@ export default {
             opponentTeamObject: null,
             state: "teamView",
             winner: null,
+            gameStatus: 6,
+            lastGameObject: null
         };
     },
 
     mounted() {
         console.log(this.teamName)
         this.initializeRun()
-        this.initializeNewGame()
+        this.initializeNewGame(100)
     },
 
     methods: {
@@ -157,16 +159,17 @@ export default {
             this.state = "game"
         },
 
-        gameOver: function (winner) {
-            this.winner = winner
+        gameOver: function (endgameObject) {
+            this.winner = endgameObject.winner
+            this.lastGameObject = endgameObject
             this.state = "end"
         },
 
         next: function (result) {
             if (result === "continue") {
-                console.log("hit")
                 this.initializeNewGame(100)
                 this.state = "teamView"
+                this.gameStatus++
                 console.log(this.state)
             }
             else {

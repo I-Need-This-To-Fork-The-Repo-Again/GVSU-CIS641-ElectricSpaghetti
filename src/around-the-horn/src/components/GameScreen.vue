@@ -5,7 +5,7 @@
         <div class="text-center text-h4">{{playerObject.name}} - {{ playerObject.initials }}</div>
       </v-col>
       <v-col cols="6">
-        <div class="text-center text-h3">AAA - Semifinals</div>
+        <div class="text-h2 text-center">{{ stages[gameStatus].game }}</div>
       </v-col>
       <v-col :order="opponentObject.home ? 'last' : 'first'">
         <div class="text-center text-h4">{{opponentObject.name}} - {{ opponentObject.initials }}</div>
@@ -49,11 +49,12 @@ import ScoreBoard from '@/components/ScoreBoard.vue';
 import FieldShow from './FieldShow.vue';
 import GameLogic from '../pages/GameLogic';
 import PlayerStats from './PlayerStats.vue';
+import { playerStages } from '@/pages/NameData';
 
 export default {
   name: 'GameScreen',
 
-  props: ['playerTeam', 'opponentTeam', 'playerTeamObject', 'opponentTeamObject'],
+  props: ['playerTeam', 'opponentTeam', 'playerTeamObject', 'opponentTeamObject', 'gameStatus'],
 
   data() {
     return {
@@ -63,6 +64,7 @@ export default {
       opponentObject: this.opponentTeamObject, //populated
       gameObject: null, //populated
       gameLog: [],
+      stages: playerStages
     }
   },
 
@@ -73,7 +75,7 @@ export default {
     console.log(this.opponentObject)
   },
 
-  components: { ScoreBoard, PlayerList, FieldShow },
+  components: { ScoreBoard, PlayerList, FieldShow, PlayerStats },
 
   mixins: [GameplayMixin, GameLogic],
 

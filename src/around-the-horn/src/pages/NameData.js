@@ -98,6 +98,28 @@ export const baseballCities = [
     "Wind Surge"
   ];
 
+  export const playerStages = [
+    {value: 0, game: "Rookie Ball - Quarterfinals"},
+    {value: 1, game: "Rookie Ball - Semifinals"},
+    {value: 2, game: "Rookie Ball - Championship"},
+
+    {value: 3, game: "Single A (A) - Quarterfinals"},
+    {value: 4, game: "Single A (A) - Semifinals"},
+    {value: 5, game: "Single A (A) - Championship"},
+
+    {value: 6, game: "Double A (AA) - Quarterfinals"},
+    {value: 7, game: "Double A (AA) - Semifinals"},
+    {value: 8, game: "Double A (AA) - Championship"},
+
+    {value: 9, game: "Triple A (AAA) - Quarterfinals"},
+    {value: 10, game: "Triple A (AAA) - Semifinals"},
+    {value: 11, game: "Triple A (AAA) - Championship"},
+
+    {value: 12, game: "MLB Playoffs - Division Championship"},
+    {value: 13, game: "MLB Playoffs - League Championship"},
+    {value: 14, game: "MLB Playoffs - World Series"},
+  ]
+
   
 export const items = [
     "corked_bat", "adrenaline_shot", "ice_skates"

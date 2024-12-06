@@ -1,7 +1,7 @@
 <template>
     <div class="title-screen-container">
       <h1 class="mt-8 text-h1 text-center">Around the Horn</h1>
-      <v-form ref="form" v-model="formValid">
+      <v-form ref="form" v-model="formValid" class="align-center my-12">
         <v-text-field
           label="Team Name"
           v-model="teamName"
@@ -12,6 +12,7 @@
         <v-text-field
           label="Team Initials (3 letters)"
           v-model="teamInitials"
+          width="800"
           required
           maxlength="3"
           :rules="[v => !!v && /^[A-Z]{3}$/.test(v) || 'Enter exactly 3 uppercase letters']"

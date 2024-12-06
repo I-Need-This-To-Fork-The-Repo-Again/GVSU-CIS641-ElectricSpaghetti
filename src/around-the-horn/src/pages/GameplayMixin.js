@@ -315,11 +315,11 @@ export default {
             if(gameObject.inning === 3) { //if in third inning
                 if(gameObject.top === false && teamObject.home === true && teamObject.runs > opponentObject.runs) { //if player team is home and winning in bottom three
                     //player win
-                    this.$emit('game-over', 'player')
+                    this.$emit('game-over', {winner: "player", playerScore: teamObject.runs, opponentScore: opponentObject.runs})
                 }
                 else if(gameObject.top === false && teamObject.home === false && teamObject.runs < opponentObject.runs) { //if player is away and losing in bottom three
                     //opp win
-                    this.$emit('game-over', 'opp')
+                    this.$emit('game-over', {winner: "opp", playerScore: teamObject.runs, opponentScore: opponentObject.runs})
                 }
             }
             else if(gameObject.inning === 4) { //third inning ends
@@ -330,6 +330,9 @@ export default {
                 else if(teamObject.runs < opponentObject.runs) { //opp winning after three
                     //opp win
                     this.$emit('game-over', 'opp')
+                }
+                else {
+                    this.$emit('game-over', 'player')
                 }
             }
         }
