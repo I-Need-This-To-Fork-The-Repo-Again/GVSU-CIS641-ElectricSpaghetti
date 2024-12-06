@@ -34,13 +34,13 @@
                 <div class="text-h3">{{ playerTeamObject.name }} ({{ playerTeamObject.initials }})</div>
                 <div class="text-h4 my-2">at</div>
                 <div class="text-h3">{{ opponentTeamObject.name }} ({{ opponentTeamObject.initials }})</div>
-                <v-btn class="mt-6" @click="$emit('start-game')">Play Ball!</v-btn>
+                <v-btn block class="mt-6" @click="$emit('start-game')">Play Ball!</v-btn>
             </div>
             <div v-else class="pa-4" style="border: 1px solid white; border-radius: 10px;">
                 <div class="text-h3">{{ opponentTeamObject.name }} ({{ opponentTeamObject.initials }})</div>
                 <div class="text-h4 my-2">at</div>
                 <div class="text-h3">{{ playerTeamObject.name }} ({{ playerTeamObject.initials }})</div>
-                <v-btn class="mt-6" @click="$emit('start-game')">Play Ball!</v-btn>
+                <v-btn block class="mt-6" @click="$emit('start-game')">Play Ball!</v-btn>
             </div>
         </v-col>
         <v-col :order="opponentTeamObject.home ? 'last' : 'first'" class="ma-8" align-self="center">

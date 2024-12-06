@@ -1,5 +1,5 @@
 <template>
-    <div class="title-screen-container">
+    <div class="title-screen-container d-flex justify-center align-center">
       <h1 class="mt-8 text-h1 text-center">Around the Horn</h1>
       <v-form ref="form" v-model="formValid" class="align-center my-12">
         <v-text-field
@@ -22,6 +22,7 @@
         <v-btn
           class="align-center mt-4"
           size="x-large"
+          block
           :disabled="!formValid"
           @click="goToGame"
         >

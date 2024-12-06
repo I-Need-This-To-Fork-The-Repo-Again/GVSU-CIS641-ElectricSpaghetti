@@ -28,7 +28,7 @@
       </v-col>
       <v-col cols="6">
         <PlayerStats :player="hittingTeam[hittingObject.hitter]" :otherPlayer="notHittingTeam[hittingObject.hitter]" :gameObject="gameObject" />
-        <v-btn @click="hit(hittingTeam, notHittingTeam, hittingObject, gameObject)">Hit</v-btn>
+        <v-btn block class="my-4" variant="tonal" size="x-large" @click="hit(hittingTeam, notHittingTeam, hittingObject, gameObject)">Hit</v-btn>
       </v-col>
       <v-col>
         <v-virtual-scroll :height="200" :items="gameLog" ref="scrollBox">

@@ -78,7 +78,7 @@
                             </v-col>
                         </v-row>
                     </div>
-                    <v-btn class="mt-8" @click="applyAndContinue()">Go Next!</v-btn>
+                    <v-btn block size="x-large" class="mt-8" @click="applyAndContinue()">Go Next!</v-btn>
                 </div>
             </v-col>
         </v-row>
@@ -95,7 +95,7 @@
             lastGameObject.opponentScore }} {{ opponentTeamObject.initials }}</div>
             <div v-if="lastGameObject.playerScore < lastGameObject.opponentScore - 10"> Lost by mercy rule</div>
 
-        <v-btn @click="$emit('next', 'end')">Start Over</v-btn>
+        <v-btn size="x-large" class="my-4" @click="$emit('next', 'end')">Start Over</v-btn>
     </div>
 </template>
 
@@ -156,7 +156,7 @@ export default {
                 decreasedStat = Math.floor(Math.random() * 5)
             }
 
-            let increasedStatChange = this.createStatChange(increasedStat, Math.floor(Math.random() * 10) + 5)
+            let increasedStatChange = this.createStatChange(increasedStat, Math.floor(Math.random() * 15) + 10)
             let decreasedStatChange = this.createStatChange(decreasedStat, (Math.floor(Math.random() * -10) - 5))
 
             return { type: "Common", color: "grey", changes: [increasedStatChange, decreasedStatChange] }
@@ -169,7 +169,7 @@ export default {
                 decreasedStat = Math.floor(Math.random() * 5)
             }
 
-            let increasedStatChange = this.createStatChange(increasedStat, Math.floor(Math.random() * 20) + 5)
+            let increasedStatChange = this.createStatChange(increasedStat, Math.floor(Math.random() * 15) + 20)
             let decreasedStatChange = this.createStatChange(decreasedStat, (Math.floor(Math.random() * -10) - 5))
 
             return { type: "Uncommon", color: "green", changes: [increasedStatChange, decreasedStatChange] }
@@ -186,8 +186,8 @@ export default {
                 increasedStat2 = Math.floor(Math.random() * 5)
             }
 
-            let increasedStatChange1 = this.createStatChange(increasedStat1, Math.floor(Math.random() * 20) + 5)
-            let increasedStatChange2 = this.createStatChange(increasedStat2, Math.floor(Math.random() * 20) + 5)
+            let increasedStatChange1 = this.createStatChange(increasedStat1, Math.floor(Math.random() * 15) + 25)
+            let increasedStatChange2 = this.createStatChange(increasedStat2, Math.floor(Math.random() * 15) + 25)
             let decreasedStatChange = this.createStatChange(decreasedStat, (Math.floor(Math.random() * -10) - 5))
 
             return { type: "Rare", color: "aqua", changes: [increasedStatChange1, increasedStatChange2, decreasedStatChange] }
@@ -204,19 +204,19 @@ export default {
                 increasedStat2 = Math.floor(Math.random() * 5)
             }
 
-            let increasedStatChange1 = this.createStatChange(increasedStat1, Math.floor(Math.random() * 30) + 5)
-            let increasedStatChange2 = this.createStatChange(increasedStat2, Math.floor(Math.random() * 30) + 5)
-            let increasedStatChange3 = this.createStatChange(increasedStat3, Math.floor(Math.random() * 30) + 5)
+            let increasedStatChange1 = this.createStatChange(increasedStat1, Math.floor(Math.random() * 15) + 30)
+            let increasedStatChange2 = this.createStatChange(increasedStat2, Math.floor(Math.random() * 15) + 30)
+            let increasedStatChange3 = this.createStatChange(increasedStat3, Math.floor(Math.random() * 15) + 30)
 
             return { type: "Legendary", color: "purple", changes: [increasedStatChange1, increasedStatChange2, increasedStatChange3] }
         },
 
         generateMythic: function () { //+5 stat large
-            let strChange = this.createStatChange(0, Math.floor(Math.random() * 30) + 5)
-            let conChange = this.createStatChange(1, Math.floor(Math.random() * 30) + 5)
-            let spdChange = this.createStatChange(2, Math.floor(Math.random() * 30) + 5)
-            let visChange = this.createStatChange(3, Math.floor(Math.random() * 30) + 5)
-            let lucChange = this.createStatChange(4, Math.floor(Math.random() * 30) + 5)
+            let strChange = this.createStatChange(0, Math.floor(Math.random() * 20) + 35)
+            let conChange = this.createStatChange(1, Math.floor(Math.random() * 20) + 35)
+            let spdChange = this.createStatChange(2, Math.floor(Math.random() * 20) + 35)
+            let visChange = this.createStatChange(3, Math.floor(Math.random() * 20) + 35)
+            let lucChange = this.createStatChange(4, Math.floor(Math.random() * 20) + 35)
 
             return { type: "Mythic", color: "orange", changes: [strChange, conChange, spdChange, visChange, lucChange] }
         },

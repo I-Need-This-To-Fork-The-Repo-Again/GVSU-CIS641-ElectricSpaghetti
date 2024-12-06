@@ -1,6 +1,6 @@
 export default {
   methods: {
-    determineHitOutcome: function (player, opp) { //zero idea if this is gonna be balanced or not but we can figure that out later
+    determineHitOutcome: function (player, opp) {
       let probabilities = {
         "K": 22,
         "FO": 22,
@@ -13,43 +13,68 @@ export default {
         "BB": 3
       };
 
-      probabilities["2B"] += (player.str - opp.str) * 0.2;
-      probabilities["HR"] += (player.str - opp.str) * 0.4;
-      probabilities["K"] -= (player.str - opp.str) * 0.4;
-      probabilities["FO"] -= (player.str - opp.str) * 0.2;
-  
-      probabilities["1B"] += (player.con - opp.con) * 0.4;
-      probabilities["2B"] += (player.con - opp.con) * 0.2;
-      probabilities["GO"] -= (player.con - opp.con) * 0.2;
-      probabilities["LO"] -= (player.con - opp.con) * 0.4;
-      probabilities["K"] -= (player.con - opp.con) * 0.2;
-      probabilities["HR"] += (player.con - opp.con) * 0.2;
+      let normalizedStats = {
+        str: Math.min(Math.max(player.str - opp.str, 0), 99),
+        con: Math.min(Math.max(player.con - opp.con, 0), 99),
+        spd: Math.min(Math.max(player.spd - opp.spd, 0), 99),
+        vis: Math.min(Math.max(player.vis - opp.vis, 0), 99),
+        luc: Math.min(Math.max(player.luc - opp.luc, 0), 99)
+      };
 
-      probabilities["BB"] += (player.vis - opp.vis) * 0.4;
-      probabilities["K"] -= (player.vis - opp.vis) * 0.4;
+      // Adjust probabilities based on stats
+      probabilities["2B"] += normalizedStats.str * 0.2;
+      probabilities["HR"] += normalizedStats.str * 0.4;
+      probabilities["K"] -= normalizedStats.str * 0.4;
+      probabilities["FO"] -= normalizedStats.str * 0.2;
 
-      probabilities["3B"] += (player.spd - opp.spd) * 0.2;
-      probabilities["GO"] -= (player.spd - opp.spd) * 0.2;
-      probabilities["K"] -= (player.spd - opp.spd) * 0.2;
-      probabilities["1B"] += (player.spd - opp.spd) * 0.2;
+      probabilities["1B"] += normalizedStats.con * 0.4;
+      probabilities["2B"] += normalizedStats.con * 0.2;
+      probabilities["GO"] -= normalizedStats.con * 0.2;
+      probabilities["LO"] -= normalizedStats.con * 0.4;
+      probabilities["K"] -= normalizedStats.con * 0.2;
+      probabilities["HR"] += normalizedStats.con * 0.2;
 
-      probabilities["BB"] += (player.luc - opp.luc) * 0.2;
-      probabilities["1B"] += (player.luc - opp.luc) * 0.2;
-      probabilities["3B"] += (player.luc - opp.luc) * 0.2;
-      probabilities["GO"] -= (player.luc - opp.luc) * 0.2;
-      probabilities["FO"] -= (player.luc - opp.luc) * 0.4;
+      probabilities["BB"] += normalizedStats.vis * 0.4;
+      probabilities["K"] -= normalizedStats.vis * 0.4;
 
+      probabilities["3B"] += normalizedStats.spd * 0.2;
+      probabilities["GO"] -= normalizedStats.spd * 0.2;
+      probabilities["K"] -= normalizedStats.spd * 0.2;
+      probabilities["1B"] += normalizedStats.spd * 0.2;
+
+      probabilities["BB"] += normalizedStats.luc * 0.2;
+      probabilities["1B"] += normalizedStats.luc * 0.2;
+      probabilities["3B"] += normalizedStats.luc * 0.2;
+      probabilities["GO"] -= normalizedStats.luc * 0.2;
+      probabilities["FO"] -= normalizedStats.luc * 0.4;
+
+      // Normalize to percentages
       let total = Object.values(probabilities).reduce((sum, prob) => sum + prob, 0);
       Object.keys(probabilities).forEach(key => {
-        probabilities[key] = Math.round((probabilities[key] / total) * 100);
-        if(probabilities[key] < 0) {
-          probabilities[key] = 0
-        }
+        probabilities[key] = Math.max(3, Math.round((probabilities[key] / total) * 100)); // Minimum 3%
       });
+
+      // Ensure total is exactly 100%
+      let adjustedTotal = Object.values(probabilities).reduce((sum, prob) => sum + prob, 0);
+      let diff = 100 - adjustedTotal;
+
+      if (diff !== 0) {
+        // Distribute the difference to maintain sum of 100%
+        let keys = Object.keys(probabilities);
+        for (let i = 0; diff !== 0; i = (i + 1) % keys.length) {
+          if (diff > 0) {
+            probabilities[keys[i]]++;
+            diff--;
+          } else if (probabilities[keys[i]] > 3) {
+            probabilities[keys[i]]--;
+            diff++;
+          }
+        }
+      }
 
       return probabilities;
     },
-
+  
     getRandomOutcome: function (probabilities) {
       let rand = Math.random() * 100;
 
