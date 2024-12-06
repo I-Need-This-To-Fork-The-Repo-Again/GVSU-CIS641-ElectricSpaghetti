@@ -1,12 +1,26 @@
 <template>
     <div v-if="playerTeam && opponentTeam">
-        <TeamShow v-if="state === 'teamView'" :playerTeam="playerTeam" :opponentTeam="opponentTeam"
-            :playerTeamObject="playerTeamObject" :opponentTeamObject="opponentTeamObject" :gameStatus="gameStatus" @start-game="startGame()" />
-        <GameScreen v-else-if="state === 'game'" :playerTeam="playerTeam" :opponentTeam="opponentTeam"
-            :playerTeamObject="playerTeamObject" :opponentTeamObject="opponentTeamObject" :gameStatus="gameStatus"
+        <TeamShow v-if="state === 'teamView'" 
+            :playerTeam="playerTeam" 
+            :opponentTeam="opponentTeam"
+            :playerTeamObject="playerTeamObject" 
+            :opponentTeamObject="opponentTeamObject" 
+            :gameStatus="gameStatus" @start-game="startGame()" />
+        <GameScreen v-else-if="state === 'game'" 
+            :playerTeam="playerTeam" 
+            :opponentTeam="opponentTeam"
+            :playerTeamObject="playerTeamObject" 
+            :opponentTeamObject="opponentTeamObject" 
+            :gameStatus="gameStatus"
             @game-over="gameOver($event)" />
-        <WinScreen v-else-if="state === 'end'" :playerTeamObject="playerTeamObject"
-            :opponentTeamObject="opponentTeamObject" :winner="winner" :lastGameObject="lastGameObject" :gameStatus="gameStatus" @next="next($event)" />
+        <WinScreen v-else-if="state === 'end'" 
+            :playerTeamObject="playerTeamObject"
+            :playerTeam="playerTeam"
+            :opponentTeamObject="opponentTeamObject" 
+            :winner="winner" 
+            :lastGameObject="lastGameObject" 
+            :gameStatus="gameStatus" 
+            @next="next($event)" />
     </div>
 </template>
 
@@ -51,7 +65,7 @@ export default {
             opponentTeamObject: null,
             state: "teamView",
             winner: null,
-            gameStatus: 6,
+            gameStatus: 0,
             lastGameObject: null
         };
     },
@@ -59,7 +73,7 @@ export default {
     mounted() {
         console.log(this.teamName)
         this.initializeRun()
-        this.initializeNewGame(100)
+        this.initializeNewGame()
     },
 
     methods: {
@@ -133,11 +147,12 @@ export default {
         },
 
         initializeRun: function () {
-            // this.playerTeam = this.generateTeam(100)
-            this.playerTeam = playerTestTeam
+            this.playerTeam = this.generateTeam(100)
+            // this.playerTeam = playerTestTeam
         },
 
-        initializeNewGame: function (oppStat) {
+        initializeNewGame: function () {
+            let oppStat = 25 + (10 * this.gameStatus)
             this.opponentTeam = this.generateTeam(oppStat)
             this.opponentTeamObject = this.generateTeamObject()
             this.playerTeamObject = this.generateTeamObject(this.teamName, this.teamInitials)
@@ -161,13 +176,15 @@ export default {
 
         gameOver: function (endgameObject) {
             this.winner = endgameObject.winner
+            console.log(endgameObject)
             this.lastGameObject = endgameObject
             this.state = "end"
         },
 
         next: function (result) {
-            if (result === "continue") {
-                this.initializeNewGame(100)
+            if (result.stage === "continue") {
+                this.playerTeam = result.newTeam
+                this.initializeNewGame()
                 this.state = "teamView"
                 this.gameStatus++
                 console.log(this.state)

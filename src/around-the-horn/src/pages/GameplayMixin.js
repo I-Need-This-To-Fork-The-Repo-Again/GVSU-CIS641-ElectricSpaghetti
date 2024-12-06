@@ -312,6 +312,12 @@ export default {
         },
 
         checkWin: function (gameObject, teamObject, opponentObject) {
+            if(teamObject.runs - 10 > opponentObject.runs) {
+                this.$emit('game-over', {winner: "player", playerScore: teamObject.runs, opponentScore: opponentObject.runs})
+            }
+            if(teamObject.runs < opponentObject.runs - 10) {
+                this.$emit('game-over', {winner: "opponent", playerScore: teamObject.runs, opponentScore: opponentObject.runs})
+            }
             if(gameObject.inning === 3) { //if in third inning
                 if(gameObject.top === false && teamObject.home === true && teamObject.runs > opponentObject.runs) { //if player team is home and winning in bottom three
                     //player win
@@ -325,14 +331,14 @@ export default {
             else if(gameObject.inning === 4) { //third inning ends
                 if(teamObject.runs > opponentObject.runs) { //player winning after three
                     //player win
-                    this.$emit('game-over', 'player')
+                    this.$emit('game-over', {winner: "player", playerScore: teamObject.runs, opponentScore: opponentObject.runs})
                 }
                 else if(teamObject.runs < opponentObject.runs) { //opp winning after three
                     //opp win
-                    this.$emit('game-over', 'opp')
+                    this.$emit('game-over', {winner: "opp", playerScore: teamObject.runs, opponentScore: opponentObject.runs})
                 }
                 else {
-                    this.$emit('game-over', 'player')
+                    this.$emit('game-over', {winner: "player", playerScore: teamObject.runs, opponentScore: opponentObject.runs})
                 }
             }
         }

@@ -1,6 +1,7 @@
 <template>
     <v-row>
-        <v-col  :order="opponentTeamObject.home ? 'last' : 'first'" class="ma-8" align-self="center">
+        <v-col  :order="playerTeamObject.home ? 'last' : 'first'" class="ma-8" align-self="center">
+            <div class=" my-2 text-center text-h2">{{ playerTeamObject.name }}</div>
             <v-table>
                 <thead>
                     <th class="border-b-sm">#</th>
@@ -42,7 +43,8 @@
                 <v-btn class="mt-6" @click="$emit('start-game')">Play Ball!</v-btn>
             </div>
         </v-col>
-        <v-col :order="playerTeamObject.home ? 'last' : 'first'" class="ma-8" align-self="center">
+        <v-col :order="opponentTeamObject.home ? 'last' : 'first'" class="ma-8" align-self="center">
+            <div class=" my-2 text-center text-h2">{{ opponentTeamObject.name }}</div>
             <v-table>
                 <thead>
                     <th class="border-b-sm">#</th>

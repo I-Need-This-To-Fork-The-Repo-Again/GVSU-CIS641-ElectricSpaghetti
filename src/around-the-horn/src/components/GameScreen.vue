@@ -102,8 +102,9 @@ export default {
       //get random number
       //let random number decide hit type
       //perform hit
-      let type = this.determineHitOutcome(team[teamObject.hitter])
-      console.log(team[teamObject.hitter])
+      let probabilities = this.determineHitOutcome(team[teamObject.hitter].stats);
+      console.log(probabilities)
+      let type = this.getRandomOutcome(probabilities);
       console.log(type)
       let outcome = this.chooseHitType(type, gameObject, teamObject)
       this.gameLog.unshift("- " + team[teamObject.hitter].name + " " + outcome)

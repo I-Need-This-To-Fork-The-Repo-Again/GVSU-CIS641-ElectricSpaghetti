@@ -74,7 +74,7 @@ export default {
 
     computed: {
         outcomePercentages: function() {
-            return this.getOutcomePercentages(this.player)
+            return this.determineHitOutcome(this.player.stats)
         }
     }
 }
