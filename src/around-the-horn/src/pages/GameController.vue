@@ -152,7 +152,7 @@ export default {
         },
 
         initializeNewGame: function () {
-            let oppStat = 25 + (10 * this.gameStatus)
+            let oppStat = 50 + (30 * this.gameStatus)
             this.opponentTeam = this.generateTeam(oppStat)
             this.opponentTeamObject = this.generateTeamObject()
             this.playerTeamObject = this.generateTeamObject(this.teamName, this.teamInitials)

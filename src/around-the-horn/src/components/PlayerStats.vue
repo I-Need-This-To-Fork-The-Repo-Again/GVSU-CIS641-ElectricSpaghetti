@@ -18,30 +18,30 @@
                 <v-table density="compact">
                     <tbody>
                         <tr>
-                            <td colspan="3">{{ player.name }}</td>
+                            <td colspan="3">{{ player.name }} - Effective Stats = {{ player.name }} - {{ otherPlayer.name }}</td>
                         </tr>
                         <tr>
-                            <td>STR: {{ player.stats.str }}</td>
+                            <td>STR: {{ player.stats.str - otherPlayer.stats.str < 0 ? 0 : player.stats.str - otherPlayer.stats.str }}</td>
                             <td>Strikeout: {{ outcomePercentages.K }}%</td>
                             <td>Single: {{ outcomePercentages["1B"] }}%</td>
                         </tr>
                         <tr>
-                            <td>CON: {{ player.stats.con }}</td>
+                            <td>CON: {{ player.stats.con - otherPlayer.stats.con < 0 ? 0 : player.stats.con - otherPlayer.stats.con  }}</td>
                             <td>Flyout: {{ outcomePercentages.FO }}%</td>
                             <td>Double: {{ outcomePercentages["2B"] }}%</td>
                         </tr>
                         <tr>
-                            <td>SPD: {{ player.stats.spd }}</td>
+                            <td>SPD: {{ player.stats.spd - otherPlayer.stats.spd < 0 ? 0 : player.stats.spd - otherPlayer.stats.spd  }}</td>
                             <td>Lineout: {{ outcomePercentages.LO }}%</td>
                             <td>Triple: {{ outcomePercentages["3B"] }}%</td>
                         </tr>
                         <tr>
-                            <td>VIS: {{ player.stats.vis }}</td>
+                            <td>VIS: {{ player.stats.vis - otherPlayer.stats.vis < 0 ? 0 : player.stats.vis - otherPlayer.stats.vis }}</td>
                             <td>Groundout: {{ outcomePercentages.GO }}%</td>
                             <td>Home Run: {{ outcomePercentages.HR }}%</td>
                         </tr>
                         <tr>
-                            <td>LUC: {{ player.stats.luc }}</td>
+                            <td>LUC: {{ player.stats.luc - otherPlayer.stats.luc < 0 ? 0 : player.stats.luc - otherPlayer.stats.luc }}</td>
                             <td></td>
                             <td>Walk: {{ outcomePercentages.BB }}%</td>
                         </tr>
@@ -58,7 +58,7 @@ import GameLogic from '@/pages/GameLogic';
 export default {
     name: 'ScoreBoard',
 
-    props: ['player', 'gameObject'],
+    props: ['player', 'gameObject', 'otherPlayer'],
 
     mixins: [GameLogic],
 
@@ -74,7 +74,7 @@ export default {
 
     computed: {
         outcomePercentages: function() {
-            return this.determineHitOutcome(this.player.stats)
+            return this.determineHitOutcome(this.player.stats, this.otherPlayer.stats)
         }
     }
 }

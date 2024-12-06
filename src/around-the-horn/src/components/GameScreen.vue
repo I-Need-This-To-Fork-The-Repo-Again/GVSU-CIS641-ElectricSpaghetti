@@ -27,8 +27,8 @@
         <ScoreBoard :gameObject="gameObject" :homeObject="getHomeTeam" :awayObject="getAwayTeam" />
       </v-col>
       <v-col cols="6">
-        <PlayerStats :player="hittingTeam[hittingObject.hitter]" :gameObject="gameObject" />
-        <v-btn @click="hit(hittingTeam, hittingObject, gameObject)">Hit</v-btn>
+        <PlayerStats :player="hittingTeam[hittingObject.hitter]" :otherPlayer="notHittingTeam[hittingObject.hitter]" :gameObject="gameObject" />
+        <v-btn @click="hit(hittingTeam, notHittingTeam, hittingObject, gameObject)">Hit</v-btn>
       </v-col>
       <v-col>
         <v-virtual-scroll :height="200" :items="gameLog" ref="scrollBox">
@@ -97,12 +97,13 @@ export default {
       };
     },
 
-    hit: function (team, teamObject, gameObject) {
+    hit: function (team, otherTeam, teamObject, gameObject) {
       //generate buckets given stats (apply items)
       //get random number
       //let random number decide hit type
       //perform hit
-      let probabilities = this.determineHitOutcome(team[teamObject.hitter].stats);
+      console.log(otherTeam[teamObject.hitter].stats)
+      let probabilities = this.determineHitOutcome(team[teamObject.hitter].stats, otherTeam[teamObject.hitter].stats);
       console.log(probabilities)
       let type = this.getRandomOutcome(probabilities);
       console.log(type)
@@ -134,6 +135,26 @@ export default {
         }
         else { //opponent is home in bottom, hitting
           return this.opponentTeam
+        }
+      }
+    },
+
+    notHittingTeam: function() {
+      console.log("hit")
+      if (this.gameObject.top) {
+        if (!this.playerObject.home) { //player away in top, hitting
+          return this.opponentTeam
+        }
+        else { //opponent is away in top, hitting
+          return this.playerTeam
+        }
+      }
+      else {
+        if (this.playerObject.home) { //player home in bottom, hitting
+          return this.opponentTeam
+        }
+        else { //opponent is home in bottom, hitting
+          return this.playerTeam
         }
       }
     },
