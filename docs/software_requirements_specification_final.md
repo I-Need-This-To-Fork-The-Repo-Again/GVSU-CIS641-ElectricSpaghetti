@@ -1,7 +1,7 @@
 # Overview
-This document will show a list of requirements that must be met for each individual feature within the product. These requirements are split between Functional and Non-Functional.
+This document will show a list of requirements that must be met for each individual feature within the product. These requirements are split between Functional and Non-Functional. After the requirements section is the change management plan. This describes how we would train, incorporate, and debug for the client.
 # Software Requirements
-<Describe the structure of this section>
+This section contains the requirements, both Functional and Non-Functional. Each type of requirement has 5 categories, each category with 5 requirements specific to that category. This gives us a total of 50 requirements, 25 Funcitonal and 25 Non-Functional.
 ## Functional Requirements
 ### RNG At-Bats
 | ID | Requirement |
