@@ -65,7 +65,7 @@ export default {
             opponentTeamObject: null,
             state: "teamView",
             winner: null,
-            gameStatus: 14,
+            gameStatus: 0,
             lastGameObject: null
         };
     },
