@@ -10,7 +10,7 @@ This section contains the requirements, both Functional and Non-Functional. Each
 | FR2 | When a runner is on third and there are less than two outs, a fly out shall advance the runner from third. |
 | FR3 | When a runner is on second, a double shall score a run and remove the scored runner from second base. |
 | FR4 | When a runner is on third, a single shall score a run and remove the runner from third base. |
-| FR5 | When the bases are loaded, a home run will score four runs and clear the bases. |
+| FR5 | When there are two outs and the batter gets out, player shall choose stat increase and play next round. |
 ### Player Stats
 | ID | Requirement |
 | :-------------: | :----------: |
@@ -97,12 +97,14 @@ This section will contain all of our traceability between our requirements and a
 ## Use Case Diagram Traceability
 | Artifact ID | Artifact Name | Requirement ID |
 | :-------------: | :----------: | :----------: |
-| UseCase1 | Move Player | FR5 |
-| … | … | … |
+| At-Bat Use Case | At-Bat Use Case | NFR1 |
+| 2 Outs Use Case | 2 Outs, Game Ending Use Case | FR5 |
 ## Class Diagram Traceability
 | Artifact Name | Requirement ID |
 | :-------------: |:----------: |
 | classPlayer | NFR3, FR5 |
+| … | … | … |
+| … | … | … |
 | … | … | … |
 ## Activity Diagram Traceability
 <In this case, it makes more sense (I think, feel free to disagree) to link
@@ -110,6 +112,8 @@ to the file and to those requirements impacted>
 | Artifact ID | Artifact Name | Requirement ID |
 | :-------------: | :----------: | :----------: |
 | <filename> | Handle Player Input | FR1-5, NFR2 |
+| … | … | … |
+| … | … | … |
 | … | … | … |
 # **Software Artifacts**
 This section will contain all of the software artifacts that we developed for this project.
