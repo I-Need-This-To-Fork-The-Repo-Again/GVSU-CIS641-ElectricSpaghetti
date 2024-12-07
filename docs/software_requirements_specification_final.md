@@ -115,7 +115,7 @@ to the file and to those requirements impacted>
 This section will contain all of the software artifacts that we developed for this project.
 * [At-Bat Use Case](../artifacts/At-Bat_Use_Case.drawio.png)
 * [CIS 641 HW5.1](../artifacts/CIS_641_HW5-1.drawio.png)
-* [CIS 641 HW5.2](../artifacts/HW5-2.png)
+* [CIS 641 HW5.2](../artifacts/HW5-2.drawio.png)
 * [Inning Activity](../artifacts/Inning-Activity.png)
 * [Item Selection](../artifacts/Item_Selection_Use_Case.png)
 * [Sequence Diagram](../artifacts/SequenceDiagram.drawio.png)
