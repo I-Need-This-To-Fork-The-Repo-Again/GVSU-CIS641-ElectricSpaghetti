@@ -117,7 +117,7 @@ This section will contain all of the software artifacts that we developed for th
 * [CIS 641 HW5.1](../artifacts/CIS_641_HW5-1.drawio.png)
 * [CIS 641 HW5.2](../artifacts/HW5-2.drawio.png)
 * [Inning Activity](../artifacts/Inning-Activity.png)
-* [Item Selection](../artifacts/Item_Selection_Use_Case.png)
+* [Item Selection](../artifacts/Item_Selection_Use_Case.drawiopng)
 * [Sequence Diagram](../artifacts/SequenceDiagram.drawio.png)
 * [State Diagram](../artifacts/StateDiagram.drawio.png)
 * [2 Outs, Game Ending Use Case](../artifacts/UseCase.png)
