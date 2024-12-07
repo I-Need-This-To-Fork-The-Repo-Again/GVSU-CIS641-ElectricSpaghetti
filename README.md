@@ -31,13 +31,9 @@ The game is web-based and a demo for now, but there are plans to bring the game 
 
 [Requirements (Draft)](docs/software_requirements_specification.md)
 
-[Requirements (Final)](docs/software_requirements_specification_final.md)
+[Requirements (Final), Change Management Plan, Tracability](docs/software_requirements_specification_final.md)
 
 [Figma Mockups](artifacts/figma-mockups.md)
-
-[Change Management Plan](docs/change_management_plan.md)
-
-[Traceability Information](docs/traceability.md)
 
 [Final Presentation Slides](artifacts/Around%20the%20Horn.pdf)
 

@@ -1,5 +1,5 @@
 # **Overview**
-This document will show a list of requirements that must be met for each individual feature within the product. These requirements are split between Functional and Non-Functional. After the requirements section is the change management plan. This describes how we would train, incorporate, and debug for the client.
+This document will show a list of requirements that must be met for each individual feature within the product. These requirements are split between Functional and Non-Functional. After the requirements section is the change management plan. This describes how we would train, incorporate, and debug for the client. Finally, we will include links to requirements for our major artifacts, as well as a section for links to all of our artifacts.
 # **Software Requirements**
 This section contains the requirements, both Functional and Non-Functional. Each type of requirement has 5 categories, each category with 5 requirements specific to that category. This gives us a total of 50 requirements, 25 Funcitonal and 25 Non-Functional.
 ## Functional Requirements
@@ -24,7 +24,7 @@ This section contains the requirements, both Functional and Non-Functional. Each
 | :-------------: | :----------: |
 | FR11 | A new game shall start when the new game button is pressed. |
 | FR12 | Team details shall be displayed on either side of the diamond. |
-| FR13 | Bases shall be highlited if a runner is on. |
+| FR13 | Bases shall be highlighted if a runner is on. |
 | FR14 | A victory screen shall be displayed after each tournament win. |
 | FR15 | A game over screen shall be displayed if the player loses the tournament. |
 ### Teams and Players
@@ -84,3 +84,60 @@ This section contains the requirements, both Functional and Non-Functional. Each
 | NFR23 | The game shall not require intensive hardware to play. |
 | NFR24 | The game shall operate accurately. |
 | NFR25 | The game shall be accessible to anyone with a browser and internet connection. |
+
+# **Change management plan**
+This section contains the change management plan for our project. We will include how to train users to play/use our game, how we ensure it will integrate into existing ecosystems/software, and how we will ensure that issues are resolved promptly.
+### *How will we train people to use it?*
+* Around the Horn is simple and intuitive, so much so that you only press a singular button for the core gameplay mechanic (hitting). By providing clear instructions on naming your team, playing the game, and selecting the desired player for post-game stat changes, Around the Horn will be easy for any customer to learn. An easy demo of the game will provide a comprehensive overview of how to play the game. Because it is a roguelike, it is up to the customer/players to determine how to properly strategize. The simplicity of our game ensures that the customer will be able to pick it up very quickly without having to understand complex gameplay rules or mechanics.
+### *How will we ensure it integrates withing their ecosystem/software?*
+* Since Around the Horn is based in a web-browser, as long as they have a browser, it will integrate. We provide clear instructions on how to correctly install any software that is needed to visualize the game, and the rest occurs in the browser. No massive downloads, no GPU or power CPU required. Just the browser of their choice and a few steps to get the game up and running.
+### *How will we ensure that any discovered issues are resolved?*
+* With a very small development team, the customer will be able to reach out directly to the developers to notify them of any bugs or errors. If discovered, the developers will be able to promptly assess the errors and make corrections to the code where necessary. Since the game is a simple web-based interface, it is most likely that the errors will revolve around the stat modifiers and difficulty curve. With this in mind, the developers can actively stress test and check edge cases to find any possible bugs and patch them even before the customer is able to discover it themselves.
+
+# **Traceability links**
+This section will contain all of our traceability between our requirements and artifacts. This section is split up into three sections: one table for use case diagrams, one table the class diagram, and one table for activity diagrams.
+
+## Use Case Diagram Traceability
+| Artifact ID | Artifact Name | Requirement ID |
+| :-------------: | :----------: | :----------: |
+| [At-Bat_Use_Case.drawio.png](../artifacts/At-Bat_Use_Case.drawio.png) | At-Bat Use Case | NFR1 |
+|[Item_Selection_Use_Case.drawio.png](../artifacts/Item_Selection_Use_Case.drawio.png) | 2 Outs, Game Ending Use Case | FR5 |
+
+## Class Diagram Traceability
+| Artifact Name | Requirement ID |
+| :-------------: |:----------: |
+| Player | FR6-10, NFR7, NFR9 |
+| Item | FR21-22 |
+| TeamObject | FR16-18 |
+| TeamStatObject | FR12 |
+| GameObject | FR13 |
+| RunObject | FR11, FR14-15, NFR11 |
+
+## Activity Diagram Traceability
+| Artifact ID | Artifact Name | Requirement ID |
+| :-------------: | :----------: | :----------: |
+| [Inning-Activity.png](../artifacts/Inning-Activity.png) | Handle Activity During Inning | FR1-5, FR13-14, FR23, NFR1 |
+| [post-game-activity.png](../artifacts/post-game-activity.png) | Handle Stat Change Selection | FR21-22, NFR9 |
+
+# **Software Artifacts**
+This section will contain all of the software artifacts that we developed for this project.
+
+* [At-Bat Use Case](artifacts/At-Bat_Use_Case.drawio.png)
+
+* [Item Selection Use Case](artifacts/Item_Selection_Use_Case.drawio.png)
+
+* [Class Diagram](artifacts/CIS_641_HW5-1.drawio.png)
+
+* [Object Diagram](artifacts/HW5-2.drawio.png)
+
+* [Inning Activity Diagram](artifacts/Inning-Activity.png)
+
+* [Post Game Activity Diagram](artifacts/post-game-activity.png)
+
+* [Sequence Diagram](artifacts/SequenceDiagram.drawio.png)
+
+* [State Diagram](artifacts/StateDiagram.drawio.png)
+
+* [CRC Card](artifacts/CRC%20Card%20Building%20Page.pdf)
+
+* [Timeline](artifacts/timeline.png)
