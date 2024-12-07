@@ -69,6 +69,10 @@ The game is web-based and a demo for now, but there are plans to bring the game 
 
 [Meeting 11/12/24](meetings/GVSU-CIS641-ELECTRICSPAGHETTI-2024-11-12.md)
 
+[Meeting 11/17/24](meetings/GVSU-CIS641-ELECTRICSPAGHETTI-2024-11-17.md)
+
+[Meeting 11/24/24](meetings/GVSU-CIS641-ELECTRICSPAGHETTI-2024-11-24.md)
+
 [Meeting 12/4/24](meetings/GVSU-CIS641-ELECTRICSPAGHETTI-2024-12-4.md)
 
 [Meeting 12/6/24 (1)](meetings/GVSU-CIS641-ELECTRICSPAGHETTI-2024-12-6.md)
