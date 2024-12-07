@@ -35,6 +35,10 @@ The game is web-based and a demo for now, but there are plans to bring the game 
 
 [Figma Mockups](artifacts/figma-mockups.md)
 
+[Change Management Plan](docs/change_management_plan.md)
+
+[Traceability Information](docs/traceability.md)
+
 [Final Presentation Slides](artifacts/Around%20the%20Horn.pdf)
 
 [Final Presentation Video](artifacts/final-presentation.md)
