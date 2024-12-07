@@ -113,4 +113,4 @@ to the file and to those requirements impacted>
 | … | … | … |
 # **Software Artifacts**
 This section will contain all of the software artifacts that we developed for this project.
-* [I am a link](to_some_file.pdf)
+* [At-Bat Use Case](./artifacts/At-Bat_Use_Case.drawio.png)
